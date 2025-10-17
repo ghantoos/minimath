@@ -18,26 +18,32 @@ export function generateQuestion(ops, nums) {
       answer = factor;
     }
 
-    // ✖️ Multiplication: up to 12 × chosen number
+    // ✖️ Multiplication: up to 12 × chosen number (random order)
     else if (op === "×") {
-      qText = `${num1} × ${factor} = ?`;
+      if (Math.random() < 0.5) {
+        qText = `${num1} × ${factor} = ?`;
+      } else {
+        qText = `${factor} × ${num1} = ?`;
+      }
       answer = num1 * factor;
     }
 
-    // ➕ Addition: up to 12 × chosen number
+    // ➕ Addition: up to 12 + chosen number (random order)
     else if (op === "+") {
       const addend = factor;
-      qText = `${num1} + ${addend} = ?`;
+      if (Math.random() < 0.5) {
+        qText = `${num1} + ${addend} = ?`;
+      } else {
+        qText = `${addend} + ${num1} = ?`;
+      }
       answer = num1 + addend;
     }
 
-    // ➖ Subtraction: cannot be negative, up to 12 × chosen number
+    // ➖ Subtraction: practice "something - num1", ensure non-negative
     else if (op === "-") {
-      const subtractor = Math.floor(Math.random() * 12) + 1;
-      const minuend = Math.max(num1 * factor, subtractor);
-      const subtrahend = Math.min(minuend, subtractor);
-      qText = `${minuend} - ${subtrahend} = ?`;
-      answer = minuend - subtrahend;
+      const minuend = num1 + Math.floor(Math.random() * 12) + 1; // N+1 → N+12
+      qText = `${minuend} - ${num1} = ?`;
+      answer = minuend - num1;
     }
 
     question = { qText, answer, options: generateOptions(answer) };
