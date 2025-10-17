@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  math-trainer:
+    container_name: kids-math-trainer
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "9999:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
