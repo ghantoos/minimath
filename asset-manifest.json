@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/kmath/static/js/main.c29902ad.js",
+    "main.js": "/kmath/static/js/main.9d54ab79.js",
     "index.html": "/kmath/index.html",
-    "main.c29902ad.js.map": "/kmath/static/js/main.c29902ad.js.map"
+    "main.9d54ab79.js.map": "/kmath/static/js/main.9d54ab79.js.map"
   },
   "entrypoints": [
-    "static/js/main.c29902ad.js"
+    "static/js/main.9d54ab79.js"
   ]
 }
