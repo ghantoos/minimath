@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { launchFireworks } from "../utils/fireworks";
 
 export default function Result({ score, total, onRestart }) {
   const percentage = Math.round((score / total) * 100);
@@ -12,6 +13,13 @@ export default function Result({ score, total, onRestart }) {
     badgeClass = "bg-warning text-dark";
     message = "Bien joué ! 👍";
   }
+
+  // 🎆 Trigger fireworks if perfect score
+  useEffect(() => {
+    if (percentage === 100) {
+      launchFireworks();
+    }
+  }, [percentage]);
 
   return (
     <div className="card p-4 text-center shadow-sm">
