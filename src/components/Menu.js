@@ -5,7 +5,7 @@ import ModalAlert from "./ModalAlert";
 export default function Menu({ onStart }) {
   const [operations, setOperations] = useState([]);
   const [numbers, setNumbers] = useState([]);
-  const [mode, setMode] = useState("manual");
+  const [mode, setMode] = useState("multiple");
   const [totalQuestions, setTotalQuestions] = useState(10);
   const [timer, setTimer] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -64,19 +64,19 @@ export default function Menu({ onStart }) {
       <div className="mb-3">
         <button
           className={`btn me-2 ${
-            mode === "manual" ? "btn-info" : "btn-outline-info"
-          }`}
-          onClick={() => setMode("manual")}
-        >
-          {t("manual")}
-        </button>
-        <button
-          className={`btn ${
             mode === "multiple" ? "btn-info" : "btn-outline-info"
           }`}
           onClick={() => setMode("multiple")}
         >
           {t("multiple")}
+        </button>
+        <button
+          className={`btn ${
+            mode === "manual" ? "btn-info" : "btn-outline-info"
+          }`}
+          onClick={() => setMode("manual")}
+        >
+          {t("manual")}
         </button>
       </div>
 

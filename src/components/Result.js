@@ -26,9 +26,9 @@ export default function Result({ score, total, onRestart }) {
 
   return (
     <div className="card p-4 text-center shadow-sm">
-      <h2>{t("finished") || "🎯 Résultat du quiz"}</h2>
+      <h2>{t("finished") || "🎯 Résultat du quiz"}: {percentage}%</h2>
       <h4 className="my-3">
-        {t("score", { score, total })} ({percentage}%)
+        {t("score", { score, total })}
       </h4>
 
       <span className={`badge fs-5 px-3 py-2 ${badgeClass}`}>{message}</span>
