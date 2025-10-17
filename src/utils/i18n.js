@@ -27,6 +27,8 @@ export const translations = {
     info: "Information",
     allOperations: "All",
     allNumbers: "All",
+    summary: "Responses summary",
+    answered: "Answered",
   },
   fr: {
     title: "🧮 Opérations mathématiques",
@@ -54,6 +56,8 @@ export const translations = {
     info: "Information",
     allOperations: "Toutes",
     allNumbers: "Tous",
+    summary: "Résumé des réponses",
+    answered: "Répondu",
   },
 };
 

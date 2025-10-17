@@ -9,6 +9,7 @@ export default function Quiz({ settings, onFinish }) {
   const [feedback, setFeedback] = useState("");
   const [input, setInput] = useState("");
   const [timeLeft, setTimeLeft] = useState(settings.timer);
+  const [history, setHistory] = useState([]);
 
   const timerRef = useRef(null);
   const inputRef = useRef(null);
@@ -45,30 +46,53 @@ export default function Quiz({ settings, onFinish }) {
     return () => clearInterval(timerRef.current);
   }, [currentQ, feedback]);
 
-  const handleTimeout = () => {
-    if (!currentQ) return;
-    setFeedback(`⏰ ${t("timeUp") || "Temps écoulé !"} ${t("wrong")} ${currentQ.answer}`);
-    setTimeout(() => nextQuestion(false), 1000);
-  };
-
   const handleAnswer = (answer) => {
     if (!currentQ || feedback) return;
     const correct = parseInt(answer) === currentQ.answer;
     setFeedback(correct ? t("correct") : `${t("wrong")} ${currentQ.answer}`);
+    setHistory((h) => [
+      ...h,
+      {
+        q: currentQ.qText,
+        correct,
+        user: parseInt(answer),
+        right: currentQ.answer,
+      },
+    ]);
     nextQuestion(correct);
+  };
+
+  const handleTimeout = () => {
+    if (!currentQ) return;
+    setFeedback(`⏰ ${t("timeUp") || "Temps écoulé !"} ${t("wrong")} ${currentQ.answer}`);
+    setHistory((h) => [
+      ...h,
+      {
+        q: currentQ.qText,
+        correct: false,
+        user: null,
+        right: currentQ.answer,
+      },
+    ]);
+    setTimeout(() => nextQuestion(false), 1000);
   };
 
   const nextQuestion = (wasCorrect) => {
     clearInterval(timerRef.current);
     setTimeout(() => {
-      if (questionIndex >= settings.totalQuestions) {
-        onFinish(score + (wasCorrect ? 1 : 0));
-      } else {
-        setQuestionIndex((q) => q + 1);
-        setScore((s) => s + (wasCorrect ? 1 : 0));
-      }
+      setScore((s) => s + (wasCorrect ? 1 : 0));
+      setHistory((h) => {
+        const updated = [...h];
+        if (questionIndex >= settings.totalQuestions) {
+          onFinish(score + (wasCorrect ? 1 : 0), updated);
+        } else {
+          setQuestionIndex((q) => q + 1);
+        }
+        return updated;
+      });
     }, 1000);
   };
+
 
   if (!currentQ) return null;
 

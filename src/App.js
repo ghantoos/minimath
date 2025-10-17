@@ -8,6 +8,7 @@ export default function App() {
   const [stage, setStage] = useState("menu");
   const [settings, setSettings] = useState({});
   const [score, setScore] = useState(0);
+  const [history, setHistory] = useState([]);
 
   const { t, lang, setLang } = useTranslation();
 
@@ -28,8 +29,9 @@ export default function App() {
     setStage("quiz");
   };
 
-  const finishQuiz = (finalScore) => {
+  const finishQuiz = (finalScore, allHistory = []) => {
     setScore(finalScore);
+    setHistory(allHistory);
     setStage("result");
   };
 
@@ -58,6 +60,7 @@ export default function App() {
         <Result
           score={score}
           total={settings.totalQuestions}
+          history={history}
           onRestart={backToMenu}
         />
       )}
