@@ -32,7 +32,7 @@ export default function Menu({ onStart }) {
 
   return (
     <div className="card p-4 shadow-sm">
-      <h4>{t("selectOperations")}</h4>
+      <h5>{t("selectOperations")}</h5>
       <div className="mb-3">
         <button
           className={`btn me-2 mb-2 ${
@@ -61,10 +61,10 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-      <h4>{t("selectNumbers")}</h4>
+      <h5>{t("selectNumbers")}</h5>
       <div className="mb-3">
         <button
-          className={`btn btn-sm me-1 mb-1 ${
+          className={`btn me-1 mb-1 ${
             numbers.length === allNums.length
               ? "btn-dark"
               : "btn-outline-dark"
@@ -78,7 +78,7 @@ export default function Menu({ onStart }) {
         {allNums.map((n) => (
           <button
             key={n}
-            className={`btn btn-sm me-1 mb-1 ${
+            className={`btn me-1 mb-1 ${
               numbers.includes(n) ? "btn-success" : "btn-outline-success"
             }`}
             onClick={() => toggle(n, numbers, setNumbers)}
@@ -88,7 +88,7 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-      <h4>{t("mode")}</h4>
+      <h5>{t("mode")}</h5>
       <div className="mb-3">
         <button
           className={`btn me-2 ${
@@ -108,7 +108,7 @@ export default function Menu({ onStart }) {
         </button>
       </div>
 
-      <h4>{t("numQuestions")}</h4>
+      <h5>{t("numQuestions")}</h5>
       <div className="mb-3">
         {[5, 10, 20, 30, 50].map((n) => (
           <button
@@ -123,7 +123,7 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-      <h4>{t("timer")}</h4>
+      <h5>{t("timer")}</h5>
       <div className="mb-3">
         {[2, 5, 10, 30, "none"].map((tValue) => (
           <button

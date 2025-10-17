@@ -2,14 +2,14 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 export const translations = {
   en: {
-    title: "🧮 Kids math trainer",
+    title: "🧮 Math Operations",
     selectOperations: "Select one or more operations",
     selectNumbers: "Select one or more numbers (1–20)",
     mode: "Mode",
     manual: "Manual input",
     multiple: "Multiple choice",
     numQuestions: "Number of questions",
-    timer: "⏱️ Time per question",
+    timer: "Time per question",
     noTimer: "None",
     start: "Start quiz",
     question: "Question",
@@ -29,14 +29,14 @@ export const translations = {
     allNumbers: "All",
   },
   fr: {
-    title: "🧮 Les opérations mathématiques",
+    title: "🧮 Opérations mathématiques",
     selectOperations: "Sélectionnez une ou plusieurs opérations",
     selectNumbers: "Sélectionnez un ou plusieurs nombres (1–20)",
     mode: "Mode",
     manual: "Saisie manuelle",
     multiple: "Choix multiple",
     numQuestions: "Nombre de questions",
-    timer: "⏱️ Temps par question",
+    timer: "⏱Temps par question",
     noTimer: "Aucun",
     start: "Commencer le quiz",
     question: "Question",

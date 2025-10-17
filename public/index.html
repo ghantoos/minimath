@@ -19,6 +19,25 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <!-- Style -->
+    <style>
+      /* Make all buttons "sm" on extra-small screens (phones) */
+      @media (max-width: 576px) {
+        .btn {
+          padding: .25rem .5rem;      /* btn-sm padding */
+          font-size: .875rem;         /* btn-sm font size */
+          border-radius: .2rem;       /* btn-sm radius */
+        }
+        /* Keep "big buttons" (like your Start button) a bit larger on mobile if desired */
+        .btn-lg {
+          padding: .5rem 1rem;        /* match Bootstrap defaults */
+          font-size: 1rem;
+          border-radius: .3rem;
+        }
+      }
+    </style>
+
   </head>
   <body class="bg-light">
     <div id="root"></div>
