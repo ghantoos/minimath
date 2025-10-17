@@ -5,7 +5,7 @@ Built with **React + Bootstrap**, packaged with **Docker**.
 
 ---
 
-## 🚀 Run with Docker
+🚀 Run with Docker
 
 ```bash
 just start
