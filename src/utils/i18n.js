@@ -25,6 +25,8 @@ export const translations = {
     resultWork: "Keep practicing 💪",
     selectWarning: "Please select at least one operation and one number!",
     info: "Information",
+    allOperations: "All",
+    allNumbers: "All",
   },
   fr: {
     title: "🧮 Les opérations mathématiques",
@@ -50,6 +52,8 @@ export const translations = {
     resultWork: "Continue à pratiquer 💪",
     selectWarning: "Veuillez sélectionner au moins une opération et un nombre !",
     info: "Information",
+    allOperations: "Toutes",
+    allNumbers: "Tous",
   },
 };
 

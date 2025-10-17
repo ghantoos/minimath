@@ -26,11 +26,29 @@ export default function Menu({ onStart }) {
     }
   };
 
+  // Helper arrays
+  const allOps = ["+", "-", "×", "÷"];
+  const allNums = [...Array(20).keys()].map((n) => n + 1);
+
   return (
     <div className="card p-4 shadow-sm">
       <h4>{t("selectOperations")}</h4>
       <div className="mb-3">
-        {["+", "-", "×", "÷"].map((op) => (
+        <button
+          className={`btn me-2 mb-2 ${
+            operations.length === allOps.length
+              ? "btn-dark"
+              : "btn-outline-dark"
+          }`}
+          onClick={() =>
+            setOperations(
+              operations.length === allOps.length ? [] : allOps
+            )
+          }
+        >
+          {t("allOperations") || "Toutes"}
+        </button>
+        {allOps.map((op) => (
           <button
             key={op}
             className={`btn me-2 mb-2 ${
@@ -45,17 +63,27 @@ export default function Menu({ onStart }) {
 
       <h4>{t("selectNumbers")}</h4>
       <div className="mb-3">
-        {[...Array(20).keys()].map((n) => (
+        <button
+          className={`btn btn-sm me-1 mb-1 ${
+            numbers.length === allNums.length
+              ? "btn-dark"
+              : "btn-outline-dark"
+          }`}
+          onClick={() =>
+            setNumbers(numbers.length === allNums.length ? [] : allNums)
+          }
+        >
+          {t("allNumbers") || "Tous"}
+        </button>
+        {allNums.map((n) => (
           <button
-            key={n + 1}
+            key={n}
             className={`btn btn-sm me-1 mb-1 ${
-              numbers.includes(n + 1)
-                ? "btn-success"
-                : "btn-outline-success"
+              numbers.includes(n) ? "btn-success" : "btn-outline-success"
             }`}
-            onClick={() => toggle(n + 1, numbers, setNumbers)}
+            onClick={() => toggle(n, numbers, setNumbers)}
           >
-            {n + 1}
+            {n}
           </button>
         ))}
       </div>
