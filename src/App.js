@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useTranslation } from "./utils/i18n";
 import Menu from "./components/Menu";
 import Quiz from "./components/Quiz";
 import Result from "./components/Result";
@@ -7,6 +8,8 @@ export default function App() {
   const [stage, setStage] = useState("menu");
   const [settings, setSettings] = useState({});
   const [score, setScore] = useState(0);
+
+  const { t, lang, setLang } = useTranslation();
 
   // ⚠️ Warn user before refreshing or closing during quiz
   useEffect(() => {
@@ -37,7 +40,18 @@ export default function App() {
 
   return (
     <div className="container py-4">
-      <h1 className="text-center mb-4">🧮 Les opérations mathématiques</h1>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h1>{t("title")}</h1>
+        <select
+          className="form-select w-auto"
+          value={lang}
+          onChange={(e) => setLang(e.target.value)}
+        >
+          <option value="en">🇬🇧 English</option>
+          <option value="fr">🇫🇷 Français</option>
+        </select>
+      </div>
+
       {stage === "menu" && <Menu onStart={startQuiz} />}
       {stage === "quiz" && <Quiz settings={settings} onFinish={finishQuiz} />}
       {stage === "result" && (

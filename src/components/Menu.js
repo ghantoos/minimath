@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useTranslation } from "../utils/i18n";
+import ModalAlert from "./ModalAlert";
 
 export default function Menu({ onStart }) {
   const [operations, setOperations] = useState([]);
@@ -6,7 +8,9 @@ export default function Menu({ onStart }) {
   const [mode, setMode] = useState("manual");
   const [totalQuestions, setTotalQuestions] = useState(10);
   const [timer, setTimer] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
+  const { t } = useTranslation();
 
   const toggle = (item, list, setter) => {
     setter(
@@ -18,13 +22,13 @@ export default function Menu({ onStart }) {
     if (operations.length && numbers.length) {
       onStart({ operations, numbers, mode, totalQuestions, timer });
     } else {
-      alert("Veuillez sélectionner au moins une opération et un nombre !");
+      setShowModal(true);
     }
   };
 
   return (
     <div className="card p-4 shadow-sm">
-      <h4>Sélectionnez une ou plusieurs opérations</h4>
+      <h4>{t("selectOperations")}</h4>
       <div className="mb-3">
         {["+", "-", "×", "÷"].map((op) => (
           <button
@@ -39,7 +43,7 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-      <h4>Sélectionnez un ou plusieurs nombres (1–20)</h4>
+      <h4>{t("selectNumbers")}</h4>
       <div className="mb-3">
         {[...Array(20).keys()].map((n) => (
           <button
@@ -56,7 +60,7 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-      <h4>Mode</h4>
+      <h4>{t("mode")}</h4>
       <div className="mb-3">
         <button
           className={`btn me-2 ${
@@ -64,7 +68,7 @@ export default function Menu({ onStart }) {
           }`}
           onClick={() => setMode("manual")}
         >
-          Saisie manuelle
+          {t("manual")}
         </button>
         <button
           className={`btn ${
@@ -72,11 +76,11 @@ export default function Menu({ onStart }) {
           }`}
           onClick={() => setMode("multiple")}
         >
-          Choix multiple
+          {t("multiple")}
         </button>
       </div>
 
-      <h4>Nombre de questions</h4>
+      <h4>{t("numQuestions")}</h4>
       <div className="mb-3">
         {[5, 10, 20, 30, 50].map((n) => (
           <button
@@ -91,27 +95,33 @@ export default function Menu({ onStart }) {
         ))}
       </div>
 
-        <h4>⏱️ Temps par question</h4>
-        <div className="mb-3">
-        {[2, 5, 10, 30, "none"].map((t) => (
-            <button
-            key={t}
+      <h4>{t("timer")}</h4>
+      <div className="mb-3">
+        {[2, 5, 10, 30, "none"].map((tValue) => (
+          <button
+            key={tValue}
             className={`btn me-2 ${
-                (t === "none" && timer === null) || timer === t
+              (tValue === "none" && timer === null) || timer === tValue
                 ? "btn-secondary"
                 : "btn-outline-secondary"
             }`}
-            onClick={() => setTimer(t === "none" ? null : t)}
-            >
-            {t === "none" ? "Aucun" : `${t}s`}
-            </button>
+            onClick={() => setTimer(tValue === "none" ? null : tValue)}
+          >
+            {tValue === "none" ? (t("noTimer") || "Aucun") : `${tValue}s`}
+          </button>
         ))}
-        </div>
-
+      </div>
 
       <button className="btn btn-lg btn-success" onClick={handleSubmit}>
-        Commencer le quiz
+        {t("start")}
       </button>
+
+      <ModalAlert
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        title={t("info")}
+        message={t("selectWarning")}
+      />
     </div>
   );
 }

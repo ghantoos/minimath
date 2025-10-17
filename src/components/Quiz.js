@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { generateQuestion } from "../utils/questionGenerator";
+import { useTranslation } from "../utils/i18n";
 
 export default function Quiz({ settings, onFinish }) {
   const [currentQ, setCurrentQ] = useState(null);
@@ -11,6 +12,7 @@ export default function Quiz({ settings, onFinish }) {
 
   const timerRef = useRef(null);
   const inputRef = useRef(null);
+  const { t } = useTranslation();
 
   // Generate new question each time
   useEffect(() => {
@@ -45,14 +47,14 @@ export default function Quiz({ settings, onFinish }) {
 
   const handleTimeout = () => {
     if (!currentQ) return;
-    setFeedback(`⏰ Temps écoulé ! Réponse : ${currentQ.answer}`);
+    setFeedback(`⏰ ${t("timeUp") || "Temps écoulé !"} ${t("wrong")} ${currentQ.answer}`);
     setTimeout(() => nextQuestion(false), 1000);
   };
 
   const handleAnswer = (answer) => {
     if (!currentQ || feedback) return;
     const correct = parseInt(answer) === currentQ.answer;
-    setFeedback(correct ? "✅ Correct !" : `❌ Faux ! Réponse : ${currentQ.answer}`);
+    setFeedback(correct ? t("correct") : `${t("wrong")} ${currentQ.answer}`);
     nextQuestion(correct);
   };
 
@@ -73,7 +75,7 @@ export default function Quiz({ settings, onFinish }) {
   return (
     <div className="card p-4 shadow-sm text-center">
       <h4>
-        Question {questionIndex}/{settings.totalQuestions}
+        {t("question")} {questionIndex}/{settings.totalQuestions}
       </h4>
 
       {settings.timer && (
@@ -103,7 +105,7 @@ export default function Quiz({ settings, onFinish }) {
             onKeyDown={(e) => e.key === "Enter" && handleAnswer(input)}
           />
           <button className="btn btn-primary" onClick={() => handleAnswer(input)}>
-            Valider
+            {t("validate") || "Valider"}
           </button>
         </div>
       ) : (
