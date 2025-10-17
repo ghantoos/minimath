@@ -10,6 +10,7 @@ export default function Quiz({ settings, onFinish }) {
   const [input, setInput] = useState("");
   const [timeLeft, setTimeLeft] = useState(settings.timer);
   const [history, setHistory] = useState([]);
+  const [questionStart, setQuestionStart] = useState(Date.now());
 
   const timerRef = useRef(null);
   const inputRef = useRef(null);
@@ -23,6 +24,7 @@ export default function Quiz({ settings, onFinish }) {
     setFeedback("");
     setInput("");
     setTimeLeft(settings.timer);
+    setQuestionStart(Date.now());
   }, [questionIndex]);
 
   // Focus the input whenever a new question appears
@@ -49,6 +51,7 @@ export default function Quiz({ settings, onFinish }) {
   const handleAnswer = (answer) => {
     if (!currentQ || feedback) return;
     const correct = parseInt(answer) === currentQ.answer;
+    const duration = ((Date.now() - questionStart) / 1000).toFixed(1);
     setFeedback(correct ? t("correct") : `${t("wrong")} ${currentQ.answer}`);
     setHistory((h) => [
       ...h,
@@ -57,6 +60,7 @@ export default function Quiz({ settings, onFinish }) {
         correct,
         user: parseInt(answer),
         right: currentQ.answer,
+        time: duration,
       },
     ]);
     nextQuestion(correct);
@@ -65,6 +69,7 @@ export default function Quiz({ settings, onFinish }) {
   const handleTimeout = () => {
     if (!currentQ) return;
     setFeedback(`⏰ ${t("timeUp") || "Temps écoulé !"} ${t("wrong")} ${currentQ.answer}`);
+    const duration = ((Date.now() - questionStart) / 1000).toFixed(1);
     setHistory((h) => [
       ...h,
       {
@@ -72,6 +77,7 @@ export default function Quiz({ settings, onFinish }) {
         correct: false,
         user: null,
         right: currentQ.answer,
+        time: duration,
       },
     ]);
     setTimeout(() => nextQuestion(false), 1000);

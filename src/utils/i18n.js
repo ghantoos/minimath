@@ -35,7 +35,7 @@ export const translations = {
     selectOperations: "Sélectionnez une ou plusieurs opérations",
     selectNumbers: "Sélectionnez un ou plusieurs nombres (1–20)",
     mode: "Mode",
-    manual: "Saisie manuelle",
+    manual: "Réponse libre",
     multiple: "Choix multiple",
     numQuestions: "Nombre de questions",
     timer: "⏱Temps par question",

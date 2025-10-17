@@ -41,18 +41,21 @@ export default function Result({ score, total, onRestart, history = [] }) {
             {history.map((item, i) => (
               <li
                 key={i}
-                className={`list-group-item ${
+                className={`list-group-item d-flex justify-content-between align-items-center ${
                   item.correct
                     ? "list-group-item-success"
                     : "list-group-item-danger"
                 }`}
               >
-                {item.q.replace("= ?", `= ${item.right}`)}{" "}
-                {!item.correct && item.user !== null && (
-                  <span>
-                    ({t("answered") || "Répondu"}: {item.user} ❌)
-                  </span>
-                )}
+                <span>
+                  {item.q.replace("= ?", `= ${item.right}`)}{" "}
+                  {!item.correct && item.user !== null && (
+                    <span>
+                      ({t("answered") || "Répondu"}: {item.user} ❌)
+                    </span>
+                  )}
+                </span>
+                <span className="text-muted small">{item.time}s</span>
               </li>
             ))}
           </ul>
