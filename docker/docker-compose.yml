@@ -2,8 +2,8 @@ services:
   math-trainer:
     container_name: kids-math-trainer
     build:
-      context: .
-      dockerfile: Dockerfile
+      context: ..
+      dockerfile: docker/Dockerfile
     ports:
       - "9999:80"
     environment:

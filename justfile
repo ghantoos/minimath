@@ -1,6 +1,6 @@
 # === Kids Math Trainer Justfile ===
 
-DOCKER_COMMAND := "export DOCKER_UID=$(id -u) && docker compose -f docker-compose.yml"
+DOCKER_COMMAND := "export DOCKER_UID=$(id -u) && docker compose -f docker/docker-compose.yml"
 
 alias s := start
 alias sd := start-detached

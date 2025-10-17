@@ -29,7 +29,7 @@ export default function ModalAlert({ show, title, message, onClose }) {
               "Veuillez sélectionner au moins une opération et un nombre !"}
           </div>
           <div className="modal-footer">
-            <button className="btn btn-success" onClick={onClose}>
+            <button className="btn btn-warning" onClick={onClose}>
               OK
             </button>
           </div>
