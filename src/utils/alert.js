@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslation } from "../utils/i18n";
+import { useTranslation } from "./i18n";
 
 export default function ModalAlert({ show, title, message, onClose }) {
   const { t } = useTranslation();

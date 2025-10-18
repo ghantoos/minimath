@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { launchFireworks } from "../utils/fireworks";
 import { useTranslation } from "../utils/i18n";
+import Stats from "../components/Stats";
 
 export default function Result({ score, total, onRestart, history = [] }) {
   const { t } = useTranslation();
@@ -33,7 +34,7 @@ export default function Result({ score, total, onRestart, history = [] }) {
 
       <span className={`badge fs-5 px-3 py-2 ${badgeClass}`}>{message}</span>
 
-      {/* 🧮 Summary of all questions */}
+      {/* 🧮 Results analysis */}
       {history.length > 0 && (
         <div className="mt-4 text-start">
           <h5>{t("summary") || "Résumé"}</h5>
@@ -59,6 +60,10 @@ export default function Result({ score, total, onRestart, history = [] }) {
               </li>
             ))}
           </ul>
+          <div className="mt-5 mb-4">
+            <h5>{t("resultsAnalysis") || "📊 Analyse des résultats"}</h5>
+            <Stats history={history} />
+          </div>
         </div>
       )}
 

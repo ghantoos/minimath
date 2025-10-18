@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "../utils/i18n";
-import ModalAlert from "./ModalAlert";
+import ModalAlert from "../utils/alert";
 
 export default function Menu({ onStart }) {
   const [operations, setOperations] = useState([]);
