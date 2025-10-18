@@ -48,14 +48,19 @@ export default function Result({ score, total, onRestart, history = [] }) {
                     : "list-group-item-danger"
                 }`}
               >
-                <span>
-                  {item.q.replace("= ?", `= ${item.right}`)}{" "}
-                  {!item.correct && item.user !== null && (
-                    <span>
-                      ({t("answered") || "Répondu"}: {item.user} ❌)
-                    </span>
-                  )}
-                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: item.q.replace(
+                      "?",
+                      `<strong class="${
+                        item.correct ? "text-success" : "text-danger"
+                      }">${item.right}</strong>`
+                    ) +
+                    (!item.correct && item.user !== null
+                      ? ` <span>(${t("answered") || "Répondu"}: ${item.user})</span>`
+                      : "")
+                  }}
+                />
                 <span className="text-muted small">{item.time}s</span>
               </li>
             ))}
