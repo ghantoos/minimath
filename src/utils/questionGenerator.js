@@ -48,8 +48,8 @@ export function generateQuestion(ops, nums) {
 
     question = { qText, answer, options: generateOptions(answer) };
     attempt++;
-    // Keep generating until it's unique or after a few tries (to avoid infinite loop)
-  } while (usedQuestions.has(question.qText) && attempt < 50);
+
+  } while (usedQuestions.has(question.qText) && attempt < 50); // ensure unique question
 
   usedQuestions.add(question.qText);
   return question;
