@@ -1,6 +1,6 @@
 {
-  "name": "Kids Math Trainer",
-  "short_name": "KMath",
+  "name": "Minimath",
+  "short_name": "Minimath",
   "start_url": "/minimath/",
   "scope": "/minimath/",
   "display": "standalone",
