@@ -1,8 +1,8 @@
 {
   "name": "Kids Math Trainer",
   "short_name": "KMath",
-  "start_url": "/kmath/",
-  "scope": "/kmath/",
+  "start_url": "/minimath/",
+  "scope": "/minimath/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#0d6efd",
