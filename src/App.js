@@ -40,8 +40,10 @@ export default function App() {
     setScore(0);
   };
 
+  const currentYear = Math.max(new Date().getFullYear(), 2025);
+
   return (
-    <div className="container py-4">
+    <div className="container py-4 d-flex flex-column min-vh-100">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h1>{t("title")}</h1>
         <select
@@ -54,16 +56,23 @@ export default function App() {
         </select>
       </div>
 
-      {stage === "menu" && <Menu onStart={startQuiz} />}
-      {stage === "quiz" && <Quiz settings={settings} onFinish={finishQuiz} />}
-      {stage === "result" && (
-        <Result
-          score={score}
-          total={settings.totalQuestions}
-          history={history}
-          onRestart={backToMenu}
-        />
-      )}
+      <div className="flex-grow-1">
+        {stage === "menu" && <Menu onStart={startQuiz} />}
+        {stage === "quiz" && <Quiz settings={settings} onFinish={finishQuiz} />}
+        {stage === "result" && (
+          <Result
+            score={score}
+            total={settings.totalQuestions}
+            history={history}
+            onRestart={backToMenu}
+          />
+        )}
+      </div>
+
+      {/* 🧾 Footer */}
+      <footer className="text-center text-muted small mt-4 mb-2">
+        © {currentYear} Ignace Mouzannar
+      </footer>
     </div>
   );
 }
