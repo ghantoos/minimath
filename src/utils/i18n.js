@@ -17,12 +17,12 @@ export const translations = {
     correct: "✅ Correct!",
     wrong: "❌ Wrong! Answer:",
     timeUp: "⏰ Time’s up!",
-    finished: "🎉 Quiz finished!",
+    finished: "Result",
     score: "You got {score} out of {total} correct.",
     backToMenu: "Back to menu",
     resultExcellent: "Congratulations!!! 🎉🎉",
     resultGood: "Well done! 👍",
-    resultWork: "Keep practicing 💪",
+    resultWork: "Keep practicing 🧠",
     selectWarning: "Please select at least one operation and one number!",
     info: "Information",
     allOperations: "All",
@@ -47,12 +47,12 @@ export const translations = {
     correct: "✅ Correct !",
     wrong: "❌ Faux ! Réponse :",
     timeUp: "⏰ Temps écoulé !",
-    finished: "🎯 Résultat du quiz",
-    score: "Vous avez {score} bonnes réponses sur {total}.",
+    finished: "Résultat",
+    score: "Vous avez {score} bonne{plural} réponse{plural} sur {total}.",
     backToMenu: "Retour au menu",
     resultExcellent: "Félicitations !!! 🎉🎉",
     resultGood: "Bien joué ! 👍",
-    resultWork: "Continue à pratiquer 💪",
+    resultWork: "Continuez à pratiquer 🧠",
     selectWarning: "Veuillez sélectionner au moins une opération et un nombre !",
     info: "Information",
     allOperations: "Toutes",
@@ -77,7 +77,7 @@ export function TranslationProvider({ children }) {
   const t = (key, params = {}) => {
     let text = translations[lang][key] || key;
     Object.entries(params).forEach(([k, v]) => {
-      text = text.replace(`{${k}}`, v);
+      text = text.replaceAll(`{${k}}`, v);
     });
     return text;
   };

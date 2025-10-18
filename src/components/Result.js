@@ -30,7 +30,7 @@ export default function Result({ score, total, onRestart, history = [] }) {
       <h2>
         {t("finished") || "🎯 Résultat du quiz"}: {percentage}%
       </h2>
-      <h4 className="my-3">{t("score", { score, total })}</h4>
+      <h4 className="my-3">{t("score", { score, total, plural: score > 1 ? "s" : "" })}</h4>
 
       <span className={`badge fs-5 px-3 py-2 ${badgeClass}`}>{message}</span>
 
