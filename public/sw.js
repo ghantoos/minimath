@@ -1,5 +1,5 @@
 // public/sw.js
-const CACHE = "kmath-v1";
+const CACHE = "minimath-v1";
 
 // Take control immediately
 self.addEventListener("install", (event) => {
@@ -37,7 +37,7 @@ self.addEventListener("fetch", (event) => {
 
         // Offline fallback: serve shell if index requested
         if (req.mode === "navigate") {
-          return cache.match("/kmath/index.html") || cache.match("/index.html");
+          return cache.match("/minimath/index.html") || cache.match("/index.html");
         }
         throw _;
       }

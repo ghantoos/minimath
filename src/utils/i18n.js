@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 
 export const translations = {
   en: {
-    title: "MiniMath",
+    title: "Minimath",
     selectOperations: "Select one or more operations",
     selectNumbers: "Select one or more numbers (1–20)",
     mode: "Mode",
@@ -32,7 +32,7 @@ export const translations = {
     resultsAnalysis: "Results analysis",
   },
   fr: {
-    title: "MiniMath",
+    title: "Minimath",
     selectOperations: "Sélectionnez une ou plusieurs opérations",
     selectNumbers: "Sélectionnez un ou plusieurs nombres (1–20)",
     mode: "Mode",

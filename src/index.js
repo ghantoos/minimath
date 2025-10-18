@@ -12,7 +12,7 @@ root.render(
 
 // Register service worker for PWA (production only)
 if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
-  const swUrl = `${process.env.PUBLIC_URL}/sw.js`; // resolves to /kmath/sw.js in prod
+  const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
   window.addEventListener("load", () => {
     navigator.serviceWorker.register(swUrl).catch(() => {
       // no-op: SW is optional
