@@ -44,15 +44,19 @@ export default function App() {
 
   return (
     <div className="container py-4 d-flex flex-column min-vh-100">
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h1>{t("title")}</h1>
+      <div className="d-flex align-items-center mb-4">
+        <img
+          src="icons/icon-192.png"
+          alt="MiniMath icon"
+          style={{ height: "2em", marginRight: "0.5em" }}
+        />
         <select
-          className="form-select w-auto"
+          className="form-select d-inline-block w-auto fs-5 py-1 px-2 pe-5"
           value={lang}
           onChange={(e) => setLang(e.target.value)}
         >
-          <option value="en">🇬🇧 English</option>
-          <option value="fr">🇫🇷 Français</option>
+          <option value="fr">{t("title")} [Français]</option>
+          <option value="en">{t("title")} [English]</option>
         </select>
       </div>
 
