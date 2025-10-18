@@ -7,7 +7,7 @@ export default function Menu({ onStart }) {
   const [numbers, setNumbers] = useState([]);
   const [mode, setMode] = useState("multiple");
   const [totalQuestions, setTotalQuestions] = useState(10);
-  const [timer, setTimer] = useState(null);
+  const [timer, setTimer] = useState(30);
   const [showModal, setShowModal] = useState(false);
 
   const { t } = useTranslation();
@@ -125,7 +125,7 @@ export default function Menu({ onStart }) {
 
       <h5>{t("timer")}</h5>
       <div className="mb-3">
-        {[2, 5, 10, 30, "none"].map((tValue) => (
+        {["none", 30, 10, 5, 2].map((tValue) => (
           <button
             key={tValue}
             className={`btn me-2 ${
