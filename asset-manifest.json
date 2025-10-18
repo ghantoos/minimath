@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/minimath/static/js/main.f0922470.js",
+    "main.js": "/minimath/static/js/main.93034a6b.js",
     "index.html": "/minimath/index.html",
-    "main.f0922470.js.map": "/minimath/static/js/main.f0922470.js.map"
+    "main.93034a6b.js.map": "/minimath/static/js/main.93034a6b.js.map"
   },
   "entrypoints": [
-    "static/js/main.f0922470.js"
+    "static/js/main.93034a6b.js"
   ]
 }
