@@ -7,12 +7,15 @@ export default function Result({ score, total, onRestart, history = [] }) {
   const { t } = useTranslation();
 
   const percentage = Math.round((score / total) * 100);
-  let badgeClass = "bg-danger";
+  let badgeClass = "bg-warning text-dark";
   let message = t("resultWork") || "À retravailler 💪";
 
-  if (percentage >= 80) {
+  if (percentage === 100) {
     badgeClass = "bg-success";
     message = t("resultExcellent") || "Excellent ! 🎉";
+  } else if (percentage >= 60 && percentage < 80) {
+    badgeClass = "bg-info text-dark";
+    message = t("resultGreat") || "Bravo ! 👍";
   } else if (percentage >= 60) {
     badgeClass = "bg-warning text-dark";
     message = t("resultGood") || "Bien joué ! 👍";
