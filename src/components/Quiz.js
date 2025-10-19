@@ -19,7 +19,7 @@ export default function Quiz({ settings, onFinish }) {
   // Generate new question each time
   useEffect(() => {
     clearInterval(timerRef.current);
-    const newQ = generateQuestion(settings.operations, settings.numbers);
+    const newQ = generateQuestion(settings.operations, settings.numbers, settings.formats);
     setCurrentQ(newQ);
     setFeedback("");
     setInput("");

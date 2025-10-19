@@ -27,9 +27,11 @@ export const translations = {
     info: "Information",
     allOperations: "All",
     allNumbers: "All",
+    allFormats: "All",
     summary: "Responses summary",
     answered: "Answered",
     resultsAnalysis: "Results analysis",
+    advancedFormat: "Advanced: question format",
   },
   fr: {
     title: "Minimath",
@@ -57,9 +59,11 @@ export const translations = {
     info: "Information",
     allOperations: "Toutes",
     allNumbers: "Tous",
+    allFormats: "Tous",
     summary: "Résumé des réponses",
     answered: "Répondu",
     resultsAnalysis: "Analyse des résultats",
+    advancedFormat: "Avancé: format de question",
   },
 };
 
