@@ -112,7 +112,7 @@ export default function Quiz({ settings, onFinish }) {
         <div className="mb-3">
           <div className="progress" style={{ height: "8px" }}>
             <div
-              className="progress-bar bg-info"
+              className="progress-bar bg-warning"
               style={{
                 width: `${(timeLeft / settings.timer) * 100}%`,
                 transition: "width 1s linear",

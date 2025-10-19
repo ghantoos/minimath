@@ -44,7 +44,7 @@ export default function Menu({ onStart }) {
         {allOps.map((op) => (
           <button
             key={op}
-            className={`btn me-2 mb-2 ${operations.includes(op) ? "btn-info" : "btn-outline-info"}`}
+            className={`btn me-2 mb-2 ${operations.includes(op) ? "btn-primary" : "btn-outline-primary"}`}
             onClick={() => toggle(op, operations, setOperations)}
           >
             {op}
@@ -63,7 +63,7 @@ export default function Menu({ onStart }) {
         {allNums.map((n) => (
           <button
             key={n}
-            className={`btn me-1 mb-1 ${numbers.includes(n) ? "btn-info" : "btn-outline-info"}`}
+            className={`btn me-1 mb-1 ${numbers.includes(n) ? "btn-primary" : "btn-outline-primary"}`}
             onClick={() => toggle(n, numbers, setNumbers)}
           >
             {n}

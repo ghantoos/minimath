@@ -1,0 +1,152 @@
+/* 🎨 MiniMath Theme Colors (Updated Palette) */
+:root {
+  --mm-blue: #2d4059;        /* navy blue */
+  --mm-blue-dark: #223143;   /* slightly darker */
+  --mm-red: #ea5455;         /* coral red */
+  --mm-red-dark: #d13e3e;    /* darker red for hover */
+  --mm-orange: #f07b3f;      /* orange (used for success / accent) */
+  --mm-orange-dark: #d96a34; /* darker orange */
+  --mm-yellow: #ffd460;      /* soft yellow */
+  --mm-yellow-dark: #e6bb52; /* darker yellow for hover */
+  --mm-light: #fffaf3;       /* light background tone */
+  --mm-dark: #2b2b2b;
+  --mm-dark-darker: #1e1e1e;
+}
+
+/* Global styles */
+body {
+  background-color: var(--mm-light);
+  color: var(--mm-dark);
+}
+
+/* 🟦 Info (blue) */
+.btn-primary {
+  background-color: var(--mm-blue);
+  border-color: var(--mm-blue);
+  color: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-primary:hover,
+.btn-primary:active {
+  background-color: var(--mm-blue-dark);
+  border-color: var(--mm-blue-dark);
+}
+.btn-outline-primary {
+  color: #616a74;
+  border-color: var(--mm-blue);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
+  background-color: var(--mm-blue);
+  border-color: var(--mm-blue-dark);
+  color: #fff;
+}
+
+/* 🟨 Warning (yellow) */
+.btn-warning {
+  background-color: var(--mm-yellow);
+  border-color: var(--mm-yellow);
+  color: var(--mm-dark);
+  font-weight: 600;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-warning:hover,
+.btn-warning:active {
+  background-color: var(--mm-yellow-dark);
+  border-color: var(--mm-yellow-dark);
+}
+.btn-outline-warning {
+  color: #616a74;
+  border-color: var(--mm-yellow);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-warning:hover,
+.btn-outline-warning:active {
+  background-color: var(--mm-yellow);
+  border-color: var(--mm-yellow-dark);
+  color: var(--mm-dark);
+}
+
+/* 🟥 Success (red → now orange/red accent) */
+.btn-success {
+  background-color: var(--mm-orange);
+  border-color: var(--mm-orange);
+  color: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-success:hover,
+.btn-success:active {
+  background-color: var(--mm-orange-dark);
+  border-color: var(--mm-orange-dark);
+}
+.btn-outline-success {
+  color: var(--mm-dark);
+  border-color: var(--mm-orange);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-success:hover,
+.btn-outline-success:active {
+  background-color: var(--mm-orange);
+  border-color: var(--mm-orange-dark);
+  color: #fff;
+}
+
+/* ⚫ Adjust dark / outline-dark buttons */
+.btn-dark {
+  background-color: var(--mm-dark);
+  border-color: var(--mm-dark);
+  color: #fff;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+.btn-dark:hover,
+.btn-dark:active {
+  background-color: var(--mm-dark-darker);
+  border-color: var(--mm-dark-darker);
+}
+.btn-outline-dark {
+  color: var(--mm-dark);
+  border-color: var(--mm-dark);
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn-outline-dark:hover,
+.btn-outline-dark:active {
+  background-color: var(--mm-dark);
+  border-color: var(--mm-dark-darker);
+  color: #fff;
+}
+
+/* 🟦 Background utilities (for progress bars, badges, etc.) */
+.bg-info {
+  background-color: var(--mm-blue) !important;
+}
+.bg-warning {
+  background-color: var(--mm-yellow) !important;
+}
+.bg-success {
+  background-color: var(--mm-orange) !important;
+}
+.bg-dark {
+  background-color: var(--mm-dark) !important;
+}
+
+/* 🌈 Background / contrast cleanup */
+.card {
+  background-color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 📱 Keep your mobile adjustments */
+@media (max-width: 576px) {
+  .btn {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    border-radius: .2rem;
+  }
+  .btn-lg {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    border-radius: .3rem;
+  }
+}
