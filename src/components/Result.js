@@ -25,12 +25,44 @@ export default function Result({ score, total, onRestart, history = [] }) {
     }
   }, [percentage]);
 
+  // 🧩 Helper: rebuild expression text (for safety)
+  const renderQuestion = (item) => {
+    // Prefer stored text if available
+    if (item.q && item.q.includes("?")) {
+      return item.q.replace(
+        "?",
+        `<strong class="${
+          item.correct ? "text-success" : "text-danger"
+        }">${item.right}</strong>`
+      );
+    }
+
+    // Otherwise rebuild from data array: [X, Y, Z, op, hiddenIndex]
+    if (item.data && Array.isArray(item.data)) {
+      const [X, Y, Z, op, hidden] = item.data;
+      const a = hidden === 1 ? "?" : X;
+      const b = hidden === 2 ? "?" : Y;
+      const c = hidden === 3 ? "?" : Z;
+      return `${a} ${op} ${b} = ${c}`.replace(
+        "?",
+        `<strong class="${
+          item.correct ? "text-success" : "text-danger"
+        }">${item.right}</strong>`
+      );
+    }
+
+    // fallback
+    return item.q || "";
+  };
+
   return (
     <div className="card p-4 text-center shadow-sm">
       <h2>
         {t("finished") || "🎯 Résultat du quiz"}: {percentage}%
       </h2>
-      <h4 className="my-3">{t("score", { score, total, plural: score > 1 ? "s" : "" })}</h4>
+      <h4 className="my-3">
+        {t("score", { score, total, plural: score > 1 ? "s" : "" })}
+      </h4>
 
       <span className={`badge fs-5 px-3 py-2 ${badgeClass}`}>{message}</span>
 
@@ -50,21 +82,18 @@ export default function Result({ score, total, onRestart, history = [] }) {
               >
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: item.q.replace(
-                      "?",
-                      `<strong class="${
-                        item.correct ? "text-success" : "text-danger"
-                      }">${item.right}</strong>`
-                    ) +
-                    (!item.correct && item.user !== null
-                      ? ` <span>(${t("answered") || "Répondu"}: ${item.user})</span>`
-                      : "")
+                    __html:
+                      renderQuestion(item) +
+                      (!item.correct && item.user !== null
+                        ? ` <span>(${t("answered") || "Répondu"}: ${item.user})</span>`
+                        : ""),
                   }}
                 />
                 <span className="text-muted small">{item.time}s</span>
               </li>
             ))}
           </ul>
+
           <div className="mt-5 mb-4">
             <h5>{t("resultsAnalysis") || "📊 Analyse des résultats"}</h5>
             <Stats history={history} />

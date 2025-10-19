@@ -1,7 +1,7 @@
 // Keep track of previously generated questions
 const usedQuestions = new Set();
 
-export function generateQuestion(ops, nums) {
+export function generateQuestion(ops, nums, formats = ["x+y=?"]) {
   let question;
   let attempt = 0;
 
@@ -9,46 +9,60 @@ export function generateQuestion(ops, nums) {
     const op = ops[Math.floor(Math.random() * ops.length)];
     const num1 = nums[Math.floor(Math.random() * nums.length)];
     const factor = Math.floor(Math.random() * 12) + 1; // 1–12
-    let qText, answer;
+    const format = formats[Math.floor(Math.random() * formats.length)];
 
-    // ➗ Division: only integer results, up to 12 × chosen number
+    let X, Y, Z;
+
+    // ➗ Division: only integer results, within selected range
     if (op === "÷") {
-      const dividend = num1 * factor;
-      qText = `${dividend} ÷ ${num1} = ?`;
-      answer = factor;
+      Y = nums[Math.floor(Math.random() * nums.length)];
+      const quotient = Math.floor(Math.random() * 12) + 1;
+      X = Y * quotient;
+      Z = quotient;
     }
 
-    // ✖️ Multiplication: up to 12 × chosen number (random order)
+    // ✖️ Multiplication
     else if (op === "×") {
-      if (Math.random() < 0.5) {
-        qText = `${num1} × ${factor} = ?`;
-      } else {
-        qText = `${factor} × ${num1} = ?`;
-      }
-      answer = num1 * factor;
+      X = num1;
+      Y = factor;
+      Z = X * Y;
     }
 
-    // ➕ Addition: up to 12 + chosen number (random order)
+    // ➕ Addition
     else if (op === "+") {
-      const addend = factor;
-      if (Math.random() < 0.5) {
-        qText = `${num1} + ${addend} = ?`;
-      } else {
-        qText = `${addend} + ${num1} = ?`;
-      }
-      answer = num1 + addend;
+      X = num1;
+      Y = factor;
+      Z = X + Y;
     }
 
-    // ➖ Subtraction: practice "something - num1", ensure non-negative
+    // ➖ Subtraction
     else if (op === "-") {
-      const minuend = num1 + Math.floor(Math.random() * 12) + 1; // N+1 → N+12
-      qText = `${minuend} - ${num1} = ?`;
-      answer = minuend - num1;
+      Y = num1;
+      X = num1 + Math.floor(Math.random() * 12) + 1; // ensure positive
+      Z = X - Y;
     }
 
-    question = { qText, answer, options: generateOptions(answer) };
-    attempt++;
+    // --- Determine hidden element from format ---
+    let hiddenIndex = 3; // default: hide result (x+y=?)
+    if (format === "x+?=y") hiddenIndex = 2; // hide second number
+    else if (format === "?+x=y") hiddenIndex = 1; // hide first number
 
+    // --- Build display text ---
+    let qText;
+    if (hiddenIndex === 1) qText = `? ${op} ${Y} = ${Z}`;
+    else if (hiddenIndex === 2) qText = `${X} ${op} ? = ${Z}`;
+    else qText = `${X} ${op} ${Y} = ?`;
+
+    const answer = hiddenIndex === 1 ? X : hiddenIndex === 2 ? Y : Z;
+
+    question = {
+      data: [X, Y, Z, op, hiddenIndex],
+      qText,
+      answer,
+      options: generateOptions(answer),
+    };
+
+    attempt++;
   } while (usedQuestions.has(question.qText) && attempt < 50); // ensure unique question
 
   usedQuestions.add(question.qText);

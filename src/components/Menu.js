@@ -6,54 +6,45 @@ export default function Menu({ onStart }) {
   const [operations, setOperations] = useState([]);
   const [numbers, setNumbers] = useState([]);
   const [mode, setMode] = useState("multiple");
+  const [formats, setFormats] = useState(["x+y=?"]);
   const [totalQuestions, setTotalQuestions] = useState(10);
   const [timer, setTimer] = useState(30);
   const [showModal, setShowModal] = useState(false);
-
   const { t } = useTranslation();
 
   const toggle = (item, list, setter) => {
-    setter(
-      list.includes(item) ? list.filter((x) => x !== item) : [...list, item]
-    );
+    setter(list.includes(item) ? list.filter((x) => x !== item) : [...list, item]);
   };
 
   const handleSubmit = () => {
     if (operations.length && numbers.length) {
-      onStart({ operations, numbers, mode, totalQuestions, timer });
-    } else {
-      setShowModal(true);
-    }
+      onStart({ operations, numbers, mode, totalQuestions, timer, formats });
+    } else setShowModal(true);
   };
 
-  // Helper arrays
   const allOps = ["+", "-", "×", "÷"];
   const allNums = [...Array(20).keys()].map((n) => n + 1);
+  const allFormats = [
+    { key: "x+y=?", label: "1️⃣ + 2️⃣ = ❓" },
+    { key: "x+?=y", label: "1️⃣ + ❓ = 2️⃣" },
+    { key: "?+x=y", label: "❓ + 1️⃣ = 2️⃣" },
+  ];
+
 
   return (
     <div className="card p-4 shadow-sm">
       <h5>{t("selectOperations")}</h5>
       <div className="mb-3">
         <button
-          className={`btn me-2 mb-2 ${
-            operations.length === allOps.length
-              ? "btn-dark"
-              : "btn-outline-dark"
-          }`}
-          onClick={() =>
-            setOperations(
-              operations.length === allOps.length ? [] : allOps
-            )
-          }
+          className={`btn me-2 mb-2 ${operations.length === allOps.length ? "btn-dark" : "btn-outline-dark"}`}
+          onClick={() => setOperations(operations.length === allOps.length ? [] : allOps)}
         >
           {t("allOperations") || "Toutes"}
         </button>
         {allOps.map((op) => (
           <button
             key={op}
-            className={`btn me-2 mb-2 ${
-              operations.includes(op) ? "btn-primary" : "btn-outline-primary"
-            }`}
+            className={`btn me-2 mb-2 ${operations.includes(op) ? "btn-info" : "btn-outline-info"}`}
             onClick={() => toggle(op, operations, setOperations)}
           >
             {op}
@@ -64,23 +55,15 @@ export default function Menu({ onStart }) {
       <h5>{t("selectNumbers")}</h5>
       <div className="mb-3">
         <button
-          className={`btn me-1 mb-1 ${
-            numbers.length === allNums.length
-              ? "btn-dark"
-              : "btn-outline-dark"
-          }`}
-          onClick={() =>
-            setNumbers(numbers.length === allNums.length ? [] : allNums)
-          }
+          className={`btn me-1 mb-1 ${numbers.length === allNums.length ? "btn-dark" : "btn-outline-dark"}`}
+          onClick={() => setNumbers(numbers.length === allNums.length ? [] : allNums)}
         >
           {t("allNumbers") || "Tous"}
         </button>
         {allNums.map((n) => (
           <button
             key={n}
-            className={`btn me-1 mb-1 ${
-              numbers.includes(n) ? "btn-success" : "btn-outline-success"
-            }`}
+            className={`btn me-1 mb-1 ${numbers.includes(n) ? "btn-info" : "btn-outline-info"}`}
             onClick={() => toggle(n, numbers, setNumbers)}
           >
             {n}
@@ -91,17 +74,13 @@ export default function Menu({ onStart }) {
       <h5>{t("mode")}</h5>
       <div className="mb-3">
         <button
-          className={`btn me-2 ${
-            mode === "multiple" ? "btn-info" : "btn-outline-info"
-          }`}
+          className={`btn me-2 ${mode === "multiple" ? "btn-warning" : "btn-outline-warning"}`}
           onClick={() => setMode("multiple")}
         >
           {t("multiple")}
         </button>
         <button
-          className={`btn ${
-            mode === "manual" ? "btn-info" : "btn-outline-info"
-          }`}
+          className={`btn ${mode === "manual" ? "btn-warning" : "btn-outline-warning"}`}
           onClick={() => setMode("manual")}
         >
           {t("manual")}
@@ -113,9 +92,7 @@ export default function Menu({ onStart }) {
         {[5, 10, 20, 30, 50].map((n) => (
           <button
             key={n}
-            className={`btn me-2 ${
-              totalQuestions === n ? "btn-warning" : "btn-outline-warning"
-            }`}
+            className={`btn me-2 ${totalQuestions === n ? "btn-warning" : "btn-outline-warning"}`}
             onClick={() => setTotalQuestions(n)}
           >
             {n}
@@ -130,12 +107,41 @@ export default function Menu({ onStart }) {
             key={tValue}
             className={`btn me-2 ${
               (tValue === "none" && timer === null) || timer === tValue
-                ? "btn-secondary"
-                : "btn-outline-secondary"
+                ? "btn-warning"
+                : "btn-outline-warning"
             }`}
             onClick={() => setTimer(tValue === "none" ? null : tValue)}
           >
             {tValue === "none" ? (t("noTimer") || "Aucun") : `${tValue}s`}
+          </button>
+        ))}
+      </div>
+
+      {/* 🔢 Advanced question format */}
+      <h5>{t("advancedFormat")}</h5>
+      <div className="mb-3">
+        {/* 🆕 All formats button */}
+        <button
+          className={`btn me-2 mb-2 ${
+            formats.length === allFormats.length ? "btn-dark" : "btn-outline-dark"
+          }`}
+          onClick={() =>
+            setFormats(formats.length === allFormats.length ? [] : allFormats.map(f => f.key))
+          }
+        >
+          {t("allFormats") || "All"}
+        </button>
+
+        {allFormats.map((f) => (
+          <button
+            key={f.key}
+            className={`btn me-2 mb-2 ${
+              formats.includes(f.key) ? "btn-warning" : "btn-outline-warning"
+            }`}
+            onClick={() => toggle(f.key, formats, setFormats)}
+            style={{ fontSize: "1.1rem" }} // 🔹 slightly larger, emoji-friendly
+          >
+            {f.label}
           </button>
         ))}
       </div>
