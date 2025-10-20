@@ -150,3 +150,11 @@ body {
     border-radius: .3rem;
   }
 }
+
+/* 🚫 Remove lingering focus/active outlines (fix visual highlight bug) */
+.btn:focus,
+.btn:active:focus,
+.btn.focus {
+  box-shadow: none !important;
+  outline: none !important;
+}

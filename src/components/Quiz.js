@@ -142,7 +142,7 @@ export default function Quiz({ settings, onFinish }) {
         <div>
           {currentQ.options.map((opt, i) => (
             <button
-              key={`${currentQ.qText}-${i}`}
+              key={`${currentQ.qText}-${i}-${questionIndex}`}
               className="btn btn-outline-primary m-2"
               onClick={(e) => {
                 e.currentTarget.blur();
