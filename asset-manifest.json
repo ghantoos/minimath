@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/minimath/static/css/main.873445a8.css",
-    "main.js": "/minimath/static/js/main.a24cfe0c.js",
+    "main.js": "/minimath/static/js/main.57ee22e4.js",
     "index.html": "/minimath/index.html",
     "main.873445a8.css.map": "/minimath/static/css/main.873445a8.css.map",
-    "main.a24cfe0c.js.map": "/minimath/static/js/main.a24cfe0c.js.map"
+    "main.57ee22e4.js.map": "/minimath/static/js/main.57ee22e4.js.map"
   },
   "entrypoints": [
     "static/css/main.873445a8.css",
-    "static/js/main.a24cfe0c.js"
+    "static/js/main.57ee22e4.js"
   ]
 }
