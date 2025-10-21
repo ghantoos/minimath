@@ -12,8 +12,11 @@ export default function Menu({ onStart }) {
   const [showModal, setShowModal] = useState(false);
   const { t } = useTranslation();
 
-  const toggle = (item, list, setter) => {
-    setter(list.includes(item) ? list.filter((x) => x !== item) : [...list, item]);
+  const toggle = (item, list, setter, defaultVal = []) => {
+    const updated = list.includes(item)
+      ? list.filter((x) => x !== item)
+      : [...list, item];
+    setter(updated.length ? updated : defaultVal);
   };
 
   const handleSubmit = () => {
@@ -29,7 +32,6 @@ export default function Menu({ onStart }) {
     { key: "x+?=y", label: "1️⃣ + ❓ = 2️⃣" },
     { key: "?+x=y", label: "❓ + 1️⃣ = 2️⃣" },
   ];
-
 
   return (
     <div className="card p-4 shadow-sm">
@@ -75,13 +77,13 @@ export default function Menu({ onStart }) {
       <div className="mb-3">
         <button
           className={`btn me-2 ${mode === "multiple" ? "btn-warning" : "btn-outline-warning"}`}
-          onClick={() => setMode("multiple")}
+          onClick={() => setMode(mode === "multiple" ? "manual" : "multiple")}
         >
           {t("multiple")}
         </button>
         <button
           className={`btn ${mode === "manual" ? "btn-warning" : "btn-outline-warning"}`}
-          onClick={() => setMode("manual")}
+          onClick={() => setMode(mode === "manual" ? "multiple" : "manual")}
         >
           {t("manual")}
         </button>
@@ -89,11 +91,11 @@ export default function Menu({ onStart }) {
 
       <h5>{t("numQuestions")}</h5>
       <div className="mb-3">
-        {[5, 10, 20, 30, 50].map((n) => (
+        {[10, 20, 30, 50].map((n) => (
           <button
             key={n}
             className={`btn me-2 ${totalQuestions === n ? "btn-warning" : "btn-outline-warning"}`}
-            onClick={() => setTotalQuestions(n)}
+            onClick={() => setTotalQuestions(totalQuestions === n ? 10 : n)}
           >
             {n}
           </button>
@@ -110,23 +112,25 @@ export default function Menu({ onStart }) {
                 ? "btn-warning"
                 : "btn-outline-warning"
             }`}
-            onClick={() => setTimer(tValue === "none" ? null : tValue)}
+            onClick={() => setTimer(timer === tValue || (tValue === "none" && timer === null) ? 30 : tValue === "none" ? null : tValue)}
           >
             {tValue === "none" ? (t("noTimer") || "Aucun") : `${tValue}s`}
           </button>
         ))}
       </div>
 
-      {/* 🔢 Advanced question format */}
       <h5>{t("advancedFormat")}</h5>
       <div className="mb-3">
-        {/* 🆕 All formats button */}
         <button
           className={`btn me-2 mb-2 ${
             formats.length === allFormats.length ? "btn-dark" : "btn-outline-dark"
           }`}
           onClick={() =>
-            setFormats(formats.length === allFormats.length ? [] : allFormats.map(f => f.key))
+            setFormats(
+              formats.length === allFormats.length
+                ? ["x+y=?"]  // ⬅️ revert to default when unselecting "All"
+                : allFormats.map(f => f.key)
+            )
           }
         >
           {t("allFormats") || "All"}
@@ -138,7 +142,7 @@ export default function Menu({ onStart }) {
             className={`btn me-2 mb-2 ${
               formats.includes(f.key) ? "btn-warning" : "btn-outline-warning"
             }`}
-            onClick={() => toggle(f.key, formats, setFormats)}
+            onClick={() => toggle(f.key, formats, setFormats, ["x+y=?"])}
             style={{ fontSize: "1.1rem" }} // 🔹 slightly larger, emoji-friendly
           >
             {f.label}
