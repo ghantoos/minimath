@@ -36,11 +36,12 @@ body {
   border-color: var(--mm-blue);
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+/* 🔧 change: outline hover is a subtle tint, NOT a full fill */
 .btn-outline-primary:hover,
 .btn-outline-primary:active {
-  background-color: var(--mm-blue);
+  background-color: rgba(45, 64, 89, 0.10); /* subtle tint */
   border-color: var(--mm-blue-dark);
-  color: #fff;
+  color: var(--mm-blue); /* keep text blue (not white) */
 }
 
 /* 🟨 Warning (yellow) */
@@ -61,11 +62,12 @@ body {
   border-color: var(--mm-yellow);
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+/* 🔧 change: outline hover is a subtle tint, NOT a full fill */
 .btn-outline-warning:hover,
 .btn-outline-warning:active {
-  background-color: var(--mm-yellow);
+  background-color: rgba(255, 212, 96, 0.20); /* subtle warm tint */
   border-color: var(--mm-yellow-dark);
-  color: var(--mm-dark);
+  color: var(--mm-dark); /* text stays dark for contrast */
 }
 
 /* 🟥 Success (red → now orange/red accent) */
@@ -87,9 +89,9 @@ body {
 }
 .btn-outline-success:hover,
 .btn-outline-success:active {
-  background-color: var(--mm-orange);
+  background-color: rgba(240, 123, 63, 0.15); /* optional consistency */
   border-color: var(--mm-orange-dark);
-  color: #fff;
+  color: var(--mm-dark);
 }
 
 /* ⚫ Adjust dark / outline-dark buttons */
@@ -109,26 +111,19 @@ body {
   border-color: var(--mm-dark);
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
+/* 🔧 change: outline hover is a subtle tint, NOT a full fill */
 .btn-outline-dark:hover,
 .btn-outline-dark:active {
-  background-color: var(--mm-dark);
+  background-color: rgba(43, 43, 43, 0.10);
   border-color: var(--mm-dark-darker);
-  color: #fff;
+  color: var(--mm-dark);
 }
 
 /* 🟦 Background utilities (for progress bars, badges, etc.) */
-.bg-info {
-  background-color: var(--mm-blue) !important;
-}
-.bg-warning {
-  background-color: var(--mm-yellow) !important;
-}
-.bg-success {
-  background-color: var(--mm-orange) !important;
-}
-.bg-dark {
-  background-color: var(--mm-dark) !important;
-}
+.bg-info    { background-color: var(--mm-blue) !important; }
+.bg-warning { background-color: var(--mm-yellow) !important; }
+.bg-success { background-color: var(--mm-orange) !important; }
+.bg-dark    { background-color: var(--mm-dark) !important; }
 
 /* 🌈 Background / contrast cleanup */
 .card {
