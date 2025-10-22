@@ -99,7 +99,6 @@ export default function Quiz({ settings, onFinish }) {
     }, 1000);
   };
 
-
   if (!currentQ) return null;
 
   return (
@@ -145,7 +144,17 @@ export default function Quiz({ settings, onFinish }) {
               key={`${currentQ.qText}-${i}-${questionIndex}`}
               className="btn btn-outline-primary m-2"
               onClick={(e) => {
-                e.currentTarget.blur();
+                if (feedback) return; // ⛔ already answered → ignore further clicks
+
+                const parent = e.currentTarget.parentElement;
+                parent.querySelectorAll(".btn-primary").forEach((b) => {
+                  b.classList.remove("btn-primary");
+                  b.classList.add("btn-outline-primary");
+                });
+
+                e.currentTarget.classList.remove("btn-outline-primary");
+                e.currentTarget.classList.add("btn-primary");
+
                 handleAnswer(opt);
               }}
             >
