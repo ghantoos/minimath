@@ -24,7 +24,7 @@ export default function Result({ score, total, onRestart, history = [] }) {
   // 🎆 Trigger fireworks if perfect score
   useEffect(() => {
     if (percentage === 100) {
-      launchFireworks();
+      launchFireworks(total);
     }
   }, [percentage]);
 

@@ -1,6 +1,6 @@
 import confetti from "canvas-confetti";
 
-export function launchFireworks() {
+export function launchFireworks(total = 10) {
   const duration = 4 * 1000; // 4 seconds
   const animationEnd = Date.now() + duration;
 
@@ -24,12 +24,17 @@ export function launchFireworks() {
     if (Date.now() < animationEnd) requestAnimationFrame(fireworksFrame);
   })();
 
-  // --- Cats layer (from previous version) ---
-  const cats = ["😺", "😸", "😹", "😻", "😽", "😼", "🐾"];
+  // --- Emoji layer (configurable) ---
+  let emojis = []; // default none
 
-  function showCat() {
+  if (total === 10) emojis = ["🎉", "🎊", "✨", "🥳"];
+  else if (total === 20) emojis = ["🌈", "🌸", "🌟", "💫", "🌞"];
+  else if (total === 30) emojis = ["😺", "😸", "😹", "😻", "🐾"];
+  else if (total === 50) emojis = ["💩", "😺", "😸", "🦄", "🐾"];
+
+  function showEmoji() {
     const cat = document.createElement("div");
-    cat.textContent = cats[Math.floor(Math.random() * cats.length)];
+    cat.textContent = emojis[Math.floor(Math.random() * emojis.length)];
     cat.style.position = "fixed";
     cat.style.fontSize = 40 + Math.random() * 30 + "px";
     cat.style.left = Math.random() * window.innerWidth + "px";
@@ -51,8 +56,8 @@ export function launchFireworks() {
     setTimeout(() => cat.remove(), 2500);
   }
 
-  (function catsLoop() {
-    showCat();
-    if (Date.now() < animationEnd) setTimeout(catsLoop, 250 + Math.random() * 250);
+  (function emojiLoop() {
+    showEmoji();
+    if (Date.now() < animationEnd) setTimeout(emojiLoop, 250 + Math.random() * 250);
   })();
 }
