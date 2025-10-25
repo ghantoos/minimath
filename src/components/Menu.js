@@ -104,7 +104,7 @@ export default function Menu({ onStart }) {
 
       <h5>{t("timer")}</h5>
       <div className="mb-3">
-        {["none", 30, 10, 5, 2].map((tValue) => (
+        {["none", 30, 20, 10, 5].map((tValue) => (
           <button
             key={tValue}
             className={`btn me-2 ${
