@@ -183,3 +183,19 @@ body {
   box-shadow: none !important;
   outline: none !important;
 }
+
+/* 🚫 Disable button hover on touch devices (prevents stuck highlight) */
+@media (hover: none) and (pointer: coarse) {
+  .btn-outline-primary:hover,
+  .btn-outline-primary:active,
+  .btn-outline-warning:hover,
+  .btn-outline-warning:active,
+  .btn-outline-success:hover,
+  .btn-outline-success:active,
+  .btn-outline-dark:hover,
+  .btn-outline-dark:active {
+    background-color: inherit !important;
+    color: inherit !important;
+    border-color: inherit !important;
+  }
+}
