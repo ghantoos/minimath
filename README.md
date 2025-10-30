@@ -1,4 +1,4 @@
-# Minimath
+# Minimath [![Netlify Status](https://api.netlify.com/api/v1/badges/8730dc2f-f4c5-4325-8a7a-3e5ef0428131/deploy-status)](https://app.netlify.com/projects/petitlab-minimath/deploys)
 
 **Minimath** is a simple, fun, bilingual (🇬🇧 English / 🇫🇷 Français) web app designed to help children practice basic arithmetic — addition, subtraction, multiplication, and division — through quick, interactive quizzes.
 
