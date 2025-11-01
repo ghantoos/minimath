@@ -4,7 +4,7 @@
 
 **Minimath** est une application web simple, ludique et bilingue (🇬🇧 Anglais / 🇫🇷 Français) conçue pour aider les enfants à pratiquer les opérations de base — addition, soustraction, multiplication et division — à travers des quiz rapides et interactifs.
 
-👉 **Live site and app:** [https://ghantoos.github.io/minimath/](https://ghantoos.github.io/minimath/)
+👉 **Live site and app:** https://minimath.petitlab.ca
 
 ---
 
