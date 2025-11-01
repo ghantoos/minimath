@@ -1,6 +1,6 @@
 services:
-  math-trainer:
-    container_name: kids-math-trainer
+  petitlab:
+    container_name: petitlab-apps
     build:
       context: ..
       dockerfile: docker/Dockerfile

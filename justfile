@@ -1,4 +1,4 @@
-# === Kids Math Trainer Justfile ===
+# === Petitlab Apps Justfile ===
 
 DOCKER_COMMAND := "export DOCKER_UID=$(id -u) && docker compose -f docker/docker-compose.yml"
 
@@ -40,4 +40,4 @@ default:
 
 # 🧪 Shell into running container
 @shell:
-    {{DOCKER_COMMAND}} exec math-trainer /bin/sh
+    {{DOCKER_COMMAND}} exec petitlab /bin/sh
